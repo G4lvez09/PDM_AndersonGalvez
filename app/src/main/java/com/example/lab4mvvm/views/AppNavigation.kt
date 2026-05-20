@@ -1,4 +1,4 @@
-package com.example.lab4mvvm.screens
+package com.example.lab4mvvm.views
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel

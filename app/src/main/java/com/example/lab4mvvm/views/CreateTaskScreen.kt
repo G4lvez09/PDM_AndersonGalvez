@@ -1,4 +1,4 @@
-package com.example.lab4mvvm.screens
+package com.example.lab4mvvm.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
