@@ -19,12 +19,14 @@ fun TaskCard(
     task: Task,
     modifier: Modifier = Modifier
 ) {
+
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
+
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
@@ -40,8 +42,7 @@ fun TaskCard(
 
                 Text(
                     text = "Descripción: ${task.description}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
 
