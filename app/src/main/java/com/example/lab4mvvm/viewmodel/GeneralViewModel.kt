@@ -1,22 +1,29 @@
 package com.example.lab4mvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.lab4mvvm.model.Task
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.example.lab4mvvm.model.TaskDao
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-class GeneralViewModel : ViewModel() {
 
-    private val _tasks =
-        MutableStateFlow<MutableList<Task>>(mutableListOf())
+class GeneralViewModel(private val taskDao: TaskDao) : ViewModel() {
 
-    val tasks = _tasks.asStateFlow()
+
+    val tasks: StateFlow<List<Task>> = taskDao.getAllTasks()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = emptyList()
+        )
 
     fun addTask(task: Task) {
 
-        _tasks.value =
-            _tasks.value.toMutableList().apply {
-                add(task)
-            }
+        viewModelScope.launch {
+            taskDao.insertTask(task)
+        }
     }
 }

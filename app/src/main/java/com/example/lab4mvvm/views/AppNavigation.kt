@@ -1,18 +1,15 @@
 package com.example.lab4mvvm.views
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lab4mvvm.viewmodel.GeneralViewModel
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(viewModel: GeneralViewModel) {
 
     val navController = rememberNavController()
-
-    val viewModel: GeneralViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -20,7 +17,6 @@ fun AppNavigation() {
     ) {
 
         composable("home") {
-
             HomeScreen(
                 navController = navController,
                 viewModel = viewModel
@@ -28,7 +24,6 @@ fun AppNavigation() {
         }
 
         composable("create") {
-
             CreateTaskScreen(
                 navController = navController,
                 viewModel = viewModel
